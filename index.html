@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="test.js"></script>
+        <style></style>
+    </head>
+    <body>
+    
+        <button id="train">Train Model</button>
+        <div id="operate">
+            <input id="input" type="text" style="display:none"/>
+            <button id="spell">Correct<button>
+        </div>
+        <div id="msg"></div>
+    </body>
+    <script>
+        var $ = function(id){
+            return document.getElementById(id);
+        },
+        btn = $("train"),
+        input = $("input"),
+        spell = $("spell"),
+        operate = $("operate"),
+        msg = $("msg");
+
+        btn.onclick = function(){
+            Speller.fetchDict(function(){
+               operate.style.display="block"; 
+               msg.innerHTML = "Model Training Finished";
+            });
+        }
+        spell.onclick = function(){
+            var word = input.value,
+                correct_word = Speller.correct(word);
+            msg.innerHTML = word == correct_word ? "You've type the right word" : correct_word;
+        }
+
+        
+
+    </script>
+</html>
