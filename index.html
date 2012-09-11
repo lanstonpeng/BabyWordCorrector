@@ -29,13 +29,20 @@
             Speller.fetchDict(function(){
                operate.style.display="block"; 
                msg.innerHTML = "Model Training Finished";
+               input.focus();
             });
+        }
+        input.onkeydown = function(e){
+            e = e || window.event
+            e.keyCode == 13 && spell.click();
         }
         spell.onclick = function(){
             var word = input.value,
                 correct_word = Speller.correct(word);
-            msg.innerHTML = word == correct_word ? "You've type the right word" : correct_word;
+                msg.innerHTML = word == correct_word ? "Sorry,I cant deal with what you've typed >__<" : correct_word;
         }
+        msg.innerHTML = "Training Model...";
+        btn.click();
 
         
 
